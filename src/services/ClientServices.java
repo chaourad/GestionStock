@@ -24,7 +24,7 @@ public class ClientServices implements IDao<Client>{
     public boolean create(Client o) {
       try {
          
-	String sql = "NSERT INTO client values (null, '" + o.getUsername() + "', '" + o.gePassword()+ "', '" + o.getTelephone()+"', '" +o.getEmail() + "')";
+	String sql = "INSERT INTO client values (null, '" + o.getUsername() + "', '" + o.gePassword()+ "', '" + o.getTelephone()+"', '" +o.getEmail() + "')";
 	Statement st = Connexion.getConnection().createStatement();
 	if (st.executeUpdate(sql) == 1)
             return true;
@@ -36,22 +36,22 @@ public class ClientServices implements IDao<Client>{
 
     @Override
     public boolean delete(Client o) {
-        		try {
-			String sql = "delete from client where id = " + o.getId();
-			Statement st = Connexion.getConnection().createStatement();
-			if (st.executeUpdate(sql) == 1)
-				return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return false;
+        try {
+            String sql = "delete from client where id = " + o.getId();
+            Statement st = Connexion.getConnection().createStatement();
+	if (st.executeUpdate(sql) == 1)
+            return true;
+	} catch (SQLException e) {
+            e.printStackTrace();
+	}
+	return false;
     }
 
     @Override
     public boolean update(Client o) {
         
     try {
-	String sql = "update client set username = '" + o.getUsername()+ "', password = '" + o.gePassword()  + "', email = '" +o.getEmail()+"', telephone = '" + o.getTelephone()  +"' where id = "+ o.getId();
+	String sql = "update client set username = '" + o.getUsername()+ "', password = '" + o.gePassword()  + "', email = '" +o.getEmail()+"', telephone = '" + o.getTelephone()  +"' where id = '"+ o.getId();
 	Statement st = Connexion.getConnection().createStatement();
 	if (st.executeUpdate(sql) == 1)
             return true;
