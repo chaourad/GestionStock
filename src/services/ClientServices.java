@@ -83,6 +83,7 @@ public class ClientServices implements IDao<Client>{
 			Statement st = Connexion.getConnection().createStatement();
 			ResultSet rs  = st.executeQuery(sql);
 			while(rs.next())
+                          
 				cl.add(new Client ( rs.getString("username"),rs.getString("password"),rs.getString("email"), rs.getString("telephone")));
 		} catch (SQLException e) {
 			e.printStackTrace();

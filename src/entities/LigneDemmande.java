@@ -3,14 +3,14 @@ package entities;
 
 public class LigneDemmande {
     	private int quantite;
-	private double prixVente;
+	private double prix;
 	private Demmande demande;
 	private Produit produit;
 
-	public LigneDemmande(int quantite, double prixVente, Demmande demande, Produit produit) {
+	public LigneDemmande(int quantite, double prix, Demmande demande, Produit produit) {
 		super();
 		this.quantite = quantite;
-		this.prixVente = prixVente;
+		this.prix = prix;
 		this.demande = demande;
 		this.produit = produit;
 	}
@@ -24,11 +24,11 @@ public class LigneDemmande {
 	}
 
 	public double getPrixVente() {
-		return prixVente;
+		return prix;
 	}
 
-	public void setPrixVente(double prixVente) {
-		this.prixVente = prixVente;
+	public void setPrixVente(double prix) {
+		this.prix = prix;
 	}
 
 	public Demmande getDemande() {
@@ -49,7 +49,7 @@ public class LigneDemmande {
 
 	@Override
 	public String toString() {
-		return "LigneDemmande [quantite=" + quantite + ", prixVente=" + prixVente + ", demande=" + demande
+		return "LigneDemmande [quantite=" + quantite + ", prixVente=" + prix + ", demande=" + demande
 				+ ", produit=" + produit + "]";
 	}
 }
