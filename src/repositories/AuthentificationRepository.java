@@ -5,6 +5,7 @@
  */
 package repositories;
 
+import entities.Client;
 import services.AuthService;
 
 /**
@@ -23,8 +24,15 @@ public class AuthentificationRepository {
    public boolean seAuthentifier(String name,String paswr){
        if(name.isEmpty() || paswr.isEmpty()){
            return false;
+       }else{
+        
+        
+         if(authService.findByclient(name, paswr) != null){
+             
+             return true;
+         }
        }
-       authService.auth(name, paswr);
+    
        return true;
    }
 }

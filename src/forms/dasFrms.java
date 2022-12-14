@@ -5,15 +5,19 @@
  */
 package forms;
 
+import javax.swing.table.DefaultTableModel;
+import services.ClientServices;
+
 /**
  *
  * @author chaou
  */
 public class dasFrms extends javax.swing.JPanel {
-
-    /**
-     * Creates new form dasFrms
-     */
+ private ClientServices cc;
+    private DefaultTableModel model;
+    private static int id;
+    
+    
     public dasFrms() {
         initComponents();
     }

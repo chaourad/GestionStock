@@ -7,9 +7,13 @@ package services;
 
 import connexion.Connexion;
 import dao.IDao;
+import entities.Client;
 import entities.Fournisseur;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +25,7 @@ public class FournisseurService implements IDao<Fournisseur> {
     @Override
     public boolean create(Fournisseur o) {
     try {
-    String sql = "INSERT INTO fournisseur VALUES( null, '"+o.getNom() +"','"+o.getTelephone()+"',"+o.getEmail()+"')";
+       String sql = "INSERT INTO fournisseur values (null, '" + o.getNom() + "', '" + o.getTelephone()+"', '" +o.getEmail() + "')";
     Statement st = Connexion.getConnection().createStatement();
     if(st.executeUpdate(sql)==1){
         return true;
@@ -49,11 +53,15 @@ public class FournisseurService implements IDao<Fournisseur> {
     @Override
     public boolean update(Fournisseur o) {
     try {
-    String sql = "update  fournisseur set nom = '" +o.getNom() +"',telephone'"+ o.getTelephone()+"', email'"+o.getEmail()+"'where id ='"+o.getId();
-    Statement st = Connexion.getConnection().createStatement();
-    if(st.executeUpdate(sql)==1){
-        return true;
-    }
+        String req = "update fournisseur set nomFournisseur = ? ,  telephone = ?, email = ?where id = ?";
+            PreparedStatement ps = Connexion.getConnection().prepareStatement(req);
+            ps.setString(1, o.getNom());
+           ps.setString(2, o.getTelephone());
+            ps.setString(3, o.getEmail());
+            ps.setInt(4, o.getId());
+    if (ps.executeUpdate() == 1) {
+                return true;
+            }
     }catch(SQLException ex){
         ex.printStackTrace();
     }
@@ -62,12 +70,31 @@ public class FournisseurService implements IDao<Fournisseur> {
 
     @Override
     public Fournisseur findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  		try {
+			String sql = "select * from fournisseur where id = " + id;
+			Statement st = Connexion.getConnection().createStatement();
+			ResultSet rs  = st.executeQuery(sql);
+			if(rs.next())
+				return new Fournisseur(rs.getInt("id"), rs.getString("nomFournisseur"), rs.getString("telephone"), rs.getString("email"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;    }
 
     @Override
     public List<Fournisseur> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       	List<Fournisseur> cl = new ArrayList<Fournisseur>();
+		try {
+			String sql = "select * from fournisseur";
+			Statement st = Connexion.getConnection().createStatement();
+			ResultSet rs  = st.executeQuery(sql);
+			while(rs.next())
+                          
+				cl.add(new  Fournisseur(rs.getInt("id"), rs.getString("nomFournisseur"), rs.getString("telephone"), rs.getString("email")));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cl;    
     }
 
 }

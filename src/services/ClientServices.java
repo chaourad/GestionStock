@@ -8,6 +8,7 @@ package services;
 import connexion.Connexion;
 import dao.IDao;
 import entities.Client;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,7 +25,7 @@ public class ClientServices implements IDao<Client>{
     public boolean create(Client o) {
       try {
          
-	String sql = "INSERT INTO client values (null, '" + o.getUsername() + "', '" + o.gePassword()+ "', '" + o.getTelephone()+"', '" +o.getEmail() + "')";
+	String sql = "INSERT INTO client values (null, '" + o.getUsername() + "', '" + o.getPassword()+ "', '" + o.getTelephone()+"', '" +o.getEmail() + "')";
 	Statement st = Connexion.getConnection().createStatement();
 	if (st.executeUpdate(sql) == 1)
             return true;
@@ -36,29 +37,38 @@ public class ClientServices implements IDao<Client>{
 
     @Override
     public boolean delete(Client o) {
-        try {
+     try {
             String sql = "delete from client where id = " + o.getId();
             Statement st = Connexion.getConnection().createStatement();
-	if (st.executeUpdate(sql) == 1)
-            return true;
-	} catch (SQLException e) {
+            if (st.executeUpdate(sql) == 1) {
+                return true;
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
-	}
-	return false;
+        }
+        return false;
     }
 
     @Override
     public boolean update(Client o) {
         
-    try {
-	String sql = "update client set username = '" + o.getUsername()+ "', password = '" + o.gePassword()  + "', email = '" +o.getEmail()+"', telephone = '" + o.getTelephone()  +"' where id = '"+ o.getId();
-	Statement st = Connexion.getConnection().createStatement();
-	if (st.executeUpdate(sql) == 1)
-            return true;
-	} catch (SQLException e) {
+       try {
+            String req = "update client set username = ? , password = ?, telephone = ?, email = ?where id = ?";
+            PreparedStatement ps = Connexion.getConnection().prepareStatement(req);
+            ps.setString(1, o.getUsername());
+            ps.setString(2, o.getPassword());
+           ps.setString(3, o.getTelephone());
+            ps.setString(4, o.getEmail());
+            ps.setInt(5, o.getId());
+            if (ps.executeUpdate() == 1) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
-	}
-            return false;
+        }
+        return false;
     }
 
     @Override
@@ -68,7 +78,7 @@ public class ClientServices implements IDao<Client>{
 			Statement st = Connexion.getConnection().createStatement();
 			ResultSet rs  = st.executeQuery(sql);
 			if(rs.next())
-				return new Client (rs.getString("username"),rs.getString("password"),rs.getString("email"), rs.getString("telephone"));
+				return new Client (rs.getInt("id"),rs.getString("username"),rs.getString("password"),rs.getString("telephone"), rs.getString("email"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -84,7 +94,7 @@ public class ClientServices implements IDao<Client>{
 			ResultSet rs  = st.executeQuery(sql);
 			while(rs.next())
                           
-				cl.add(new Client ( rs.getString("username"),rs.getString("password"),rs.getString("email"), rs.getString("telephone")));
+				cl.add(new Client ( rs.getInt("id"),rs.getString("username"),rs.getString("password"),rs.getString("telephone"), rs.getString("email")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

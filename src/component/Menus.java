@@ -39,12 +39,14 @@ public class Menus extends javax.swing.JPanel {
          listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
         listMenu1.addItem(new Model_Menu("4","Gestion Fournisseur",Model_Menu.MenuType.MENU));
          listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+         
         listMenu1.addItem(new Model_Menu("4","Gestion Produit ",Model_Menu.MenuType.MENU));
          listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
          listMenu1.addItem(new Model_Menu("4","Gestion des Categories ",Model_Menu.MenuType.MENU));
          listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
-         listMenu1.addItem(new Model_Menu("4","Gestion des Entrees ",Model_Menu.MenuType.MENU));
+         listMenu1.addItem(new Model_Menu("4","Gestion des Demmade ",Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+        listMenu1.addItem(new Model_Menu("4","Les LigneDemmades ",Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
           listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
         listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
@@ -80,6 +82,8 @@ public class Menus extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/stock.png"))); // NOI18N
         jLabel1.setText("      Gestion Stock");
 
+        listMenu1.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout panelMovingLayout = new javax.swing.GroupLayout(panelMoving);
         panelMoving.setLayout(panelMovingLayout);
         panelMovingLayout.setHorizontalGroup(
@@ -87,31 +91,30 @@ public class Menus extends javax.swing.JPanel {
             .addGroup(panelMovingLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
+            .addComponent(listMenu1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelMovingLayout.setVerticalGroup(
             panelMovingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMovingLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(listMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 1074, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        listMenu1.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelMoving, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(listMenu1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelMoving, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(listMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

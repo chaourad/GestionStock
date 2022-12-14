@@ -7,6 +7,7 @@ public class Client {
         private String password;
 	private String telephone;
 	private String email;
+        private Boolean isAdmin;
 	
 
 	public Client(String username, String password, String telephone, String email) {
@@ -15,8 +16,12 @@ public class Client {
                 this.password = password;
 		this.telephone = telephone;
 		this.email = email;
+             
 	}
-        
+        public Client(String username, String password){
+            this.username = username;
+                this.password = password;
+        }
         
         public Client(int id, String username, String password,  String telephone, String email) {
 		this.id = id;
@@ -24,6 +29,7 @@ public class Client {
                   this.password = password;
 		this.telephone = telephone;
 		this.email = email;
+                
 	}
 
     @Override
@@ -51,6 +57,9 @@ public class Client {
 
 	public int getId() {
 		return id;
+	}
+        public Boolean getIsAdmin() {
+		return isAdmin;
 	}
 
 	public void setId(int id) {
@@ -80,7 +89,7 @@ public class Client {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-        public String gePassword() {
+        public String getPassword() {
 		return password;
 	}
 

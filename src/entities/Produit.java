@@ -6,28 +6,31 @@ public class Produit {
     	private int id;
 	private String desigation;
 	private Double prix_achat;
-        private String image;
-       private Double tauxTva;
-       private Categories category ;
+        private byte[] image;
+        private Double tauxTva;
+        private Categories category ;
+        private Rangement rayon;
 	
 
-	public Produit(String desigation, Double prix_achat,String image,Double tauxTva,Categories category) {
+	public Produit(String desigation, Double prix_achat,byte[] image,Double tauxTva,Categories category,Rangement rayon) {
                 
 		this.desigation = desigation;
 		this.prix_achat = prix_achat;
                 this.image=image;
                 this.tauxTva=tauxTva;
-                  this.category=category;
+                this.category=category;
+                this.rayon=rayon; 
 	}
-        public Produit(int id,String desigation, Double prix_achat,String image,Double tauxTva,Categories category) {
+        public Produit(int id,String desigation, Double prix_achat,byte[] image,Double tauxTva,Categories category,Rangement rayon) {
 		this.id = id;
 		this.desigation = desigation;
 		this.prix_achat = prix_achat;
                 this.image=image;
                 this.tauxTva=tauxTva;
                 this.category=category;
+                this.rayon=rayon; 
 	}
-   public Double getTauxTva() {
+        public Double getTauxTva() {
 		return tauxTva;
 	}
 
@@ -41,11 +44,18 @@ public class Produit {
 	public void setCategory(Categories category) {
 		this.category = category;
 	}
-    public String getImage() {
+        public Rangement getRangement() {
+		return rayon;
+	}
+
+	public void setRangement(Rangement rayon) {
+		this.rayon = rayon;
+	}
+        public byte[] getImage() {
 		return image;
 	}
 
-	public void setImage(String image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 

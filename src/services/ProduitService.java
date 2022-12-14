@@ -35,7 +35,7 @@ public class ProduitService implements IDao<Produit> {
             PreparedStatement ps = Connexion.getConnection().prepareStatement(req);
             ps.setString(1, o.getDesigation());
             ps.setDouble(2, o.getPrix_achat());
-             ps.setString(3, o.getImage());
+           ps.setBytes(3, o.getImage());
              ps.setDouble(4, o.getTauxTva());
             ps.setInt(5, o.getCategory().getId());
             if (ps.executeUpdate() == 1) {
@@ -70,7 +70,7 @@ public class ProduitService implements IDao<Produit> {
             PreparedStatement ps = Connexion.getConnection().prepareStatement(req);
          ps.setString(1, o.getDesigation());
             ps.setDouble(2, o.getPrix_achat());
-             ps.setString(3, o.getImage());
+             ps.setBytes(3, o.getImage());
              ps.setDouble(4, o.getTauxTva());
             ps.setInt(5, o.getCategory().getId());
             ps.setInt(6, o.getId());
@@ -95,7 +95,7 @@ public class ProduitService implements IDao<Produit> {
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
               
-             return new Produit(rs.getInt("id"), rs.getString("designation"),  rs.getDouble("prixAchat"),rs.getString("image"), rs.getDouble("tauxTVA"), ss.findById(rs.getInt("id_categ")));
+        //     return new Produit(rs.getInt("id"), rs.getString("designation"),  rs.getDouble("prixAchat"),rs.getString("image"), rs.getDouble("tauxTVA"), ss.findById(rs.getInt("id_categ")),);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -112,7 +112,7 @@ public class ProduitService implements IDao<Produit> {
             Statement st = Connexion.getConnection().createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                prd.add(new Produit(rs.getInt("id"), rs.getString("designation"),  rs.getDouble("prixAchat"),rs.getString("image"), rs.getDouble("tauxTVA"), ss.findById(rs.getInt("id_categ"))));
+                //prd.add(new Produit(rs.getInt("id"), rs.getString("designation"),  rs.getDouble("prixAchat"),rs.getString("image"), rs.getDouble("tauxTVA"), ss.findById(rs.getInt("id_categ"))));
             }
         } catch (SQLException e) {
             e.printStackTrace();

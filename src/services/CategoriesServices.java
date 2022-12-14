@@ -33,7 +33,8 @@ public class CategoriesServices  implements IDao<Categories> {
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
-	return false;    }
+	return false;   
+    }
 
     @Override
     public boolean delete(Categories o) {
