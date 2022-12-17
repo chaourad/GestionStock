@@ -7,6 +7,10 @@ package services;
 import connexion.Connexion;
 import entities.Produit;
 import dao.IDao;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,17 +29,20 @@ public class ProduitService implements IDao<Produit> {
         ss = new CategoriesServices();
     }
 
-    @Override
-	public boolean create(Produit o) {
+ /*
+	public boolean create(Produit o , String s) throws FileNotFoundException {
 	
                    
         //String sql = "INSERT INTO produit values (null, '" + o.getDesigation() + "', '" + o.getPrix_achat()+"','"+o.getImage()+"','"+o.getTauxTva()+"','"+o.getCategory()+ "')";
 	 try {
             String req = "insert into produit values (null, ?, ? , ? , ?, ?)";
             PreparedStatement ps = Connexion.getConnection().prepareStatement(req);
+     
+             InputStream is = new FileInputStream(new File(s));
             ps.setString(1, o.getDesigation());
             ps.setDouble(2, o.getPrix_achat());
-           ps.setBytes(3, o.getImage());
+             ps.setBlob(3,is);
+       //    ps.setBytes(3, o.getImage());
              ps.setDouble(4, o.getTauxTva());
             ps.setInt(5, o.getCategory().getId());
             if (ps.executeUpdate() == 1) {
@@ -48,7 +55,7 @@ public class ProduitService implements IDao<Produit> {
         }
         return false;	
 	}
-        
+        */
 	@Override
 	public boolean delete(Produit o) {
 	try {

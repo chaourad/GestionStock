@@ -9,6 +9,7 @@ import connexion.Connexion;
 import dao.IDao;
 import entities.Categories;
 import entities.LigneCommande;
+import entities.Produit;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
@@ -17,52 +18,31 @@ import java.util.List;
  *
  * @author chaou
  */
-public class ligneCommandeServices implements IDao<LigneCommande>{
-  private ProduitService ss;
+public class ligneDemmandeServices implements IDao<Produit>{
+
+    @Override
+    public boolean create(Produit o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(Produit o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(Produit o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Produit findById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Produit> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
   
-
-    public ligneCommandeServices() {
-        ss = new ProduitService();
-    }
-
-    @Override
-    public boolean create(LigneCommande o) {
-try {
-            String req = "insert into produit values (null, ?, ? , ? , ?, ?)";
-            PreparedStatement ps = Connexion.getConnection().prepareStatement(req);
-            ps.setInt(1, o.getQuantite());
-            ps.setDouble(2, o.getPrixVente());
-             //ps.setString(3, o.getImage());
-             //ps.setInt(4, o.getTauxTva());
-            
-            if (ps.executeUpdate() == 1) {
-                return true;
-            }
-
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;	    }
-
-    @Override
-    public boolean delete(LigneCommande o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean update(LigneCommande o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public LigneCommande findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<LigneCommande> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

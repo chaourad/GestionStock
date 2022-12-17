@@ -35,22 +35,34 @@ public class Menus extends javax.swing.JPanel {
     private void init(){
         listMenu1.addItem(new Model_Menu("4","Dashboard",Model_Menu.MenuType.MENU));
          listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
-        listMenu1.addItem(new Model_Menu("4","Gestion Client",Model_Menu.MenuType.MENU));
-         listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
         listMenu1.addItem(new Model_Menu("4","Gestion Fournisseur",Model_Menu.MenuType.MENU));
          listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
-         
-        listMenu1.addItem(new Model_Menu("4","Gestion Produit ",Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("4","Gestion des Demmades ",Model_Menu.MenuType.MENU));
          listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
-         listMenu1.addItem(new Model_Menu("4","Gestion des Categories ",Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("4","LigneDemmande  ",Model_Menu.MenuType.MENU));
          listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
-         listMenu1.addItem(new Model_Menu("4","Gestion des Demmade ",Model_Menu.MenuType.MENU));
+         listMenu1.addItem(new Model_Menu("4"," Categories / Rangements ",Model_Menu.MenuType.MENU));
+         listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+         listMenu1.addItem(new Model_Menu("4","Gestion Produit ",Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
-        listMenu1.addItem(new Model_Menu("4","Les LigneDemmades ",Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("4","Gestion Client ",Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+             listMenu1.addItem(new Model_Menu("4","Gestion des Commandes ",Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+        listMenu1.addItem(new Model_Menu("4"," LigneCommandes ",Model_Menu.MenuType.MENU));
           listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+            listMenu1.addItem(new Model_Menu("4"," Produit ",Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
-         listMenu1.addItem(new Model_Menu("10","Logout ",Model_Menu.MenuType.MENU));
+         listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+        listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+        listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+         listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+        listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+         listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+        listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+         listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+        listMenu1.addItem(new Model_Menu(""," ",Model_Menu.MenuType.EMPTY));
+         listMenu1.addItem(new Model_Menu("10","Deconnexion  ",Model_Menu.MenuType.MENU));
     
         
     }

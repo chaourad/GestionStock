@@ -90,4 +90,36 @@ public class RangementService  implements IDao<Rangement>{
         }
         return rng;    }
     
+      public List<Rangement> findAllByName() {
+  List<Rangement> rng = new ArrayList<Rangement>();
+        try {
+            String sql = "select numero from rayon";
+            Statement st = Connexion.getConnection().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                rng.add(new Rangement(rs.getInt("numero")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rng;    
+      }
+      
+      
+      
+      
+      
+         public int getRangIdByNumero(int numeroRang,List<Rangement> rangemts){
+        
+        for(Rangement rng : rangemts){
+            if(numeroRang == rng.getNumero()){
+               return rng.getId();
+            }
+        }
+        return -1;
+    }
+         
+              
+    
+    
 }

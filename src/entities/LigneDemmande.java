@@ -1,11 +1,17 @@
 
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LigneDemmande {
     	private int quantite;
 	private double prix;
 	private Demmande demande;
 	private Produit produit;
+        List<Produit> produits;
+        
+        
 
 	public LigneDemmande(int quantite, double prix, Demmande demande, Produit produit) {
 		super();
@@ -13,7 +19,21 @@ public class LigneDemmande {
 		this.prix = prix;
 		this.demande = demande;
 		this.produit = produit;
+                produits = new ArrayList<Produit>();
 	}
+        
+        
+        
+        
+        
+        
+        public void getAllProduct(){
+            
+        }
+        
+        
+        
+       
 
 	public int getQuantite() {
 		return quantite;

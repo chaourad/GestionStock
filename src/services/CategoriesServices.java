@@ -94,10 +94,11 @@ public class CategoriesServices  implements IDao<Categories> {
         }
         return catego;
     }
+    
       public List<Categories> findAllName() {
    	  List<Categories> catego = new ArrayList<Categories>();
         try {
-            String sql = "select * from categories";
+            String sql = "select nom from categories";
             Statement st = Connexion.getConnection().createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
@@ -107,6 +108,18 @@ public class CategoriesServices  implements IDao<Categories> {
             e.printStackTrace();
         }
         return catego;
+    }
+      
+      
+      
+         public int getCategoryIdByName(String categoryName,List<Categories> categories){
+        
+        for(Categories cate : categories){
+            if(categoryName.toLowerCase().equals(cate.getNom().toLowerCase())){
+               return cate.getId();
+            }
+        }
+        return -1;
     }
     
 }

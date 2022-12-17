@@ -7,7 +7,8 @@ public class Client {
         private String password;
 	private String telephone;
 	private String email;
-        private Boolean isAdmin;
+   
+       
 	
 
 	public Client(String username, String password, String telephone, String email) {
@@ -16,6 +17,7 @@ public class Client {
                 this.password = password;
 		this.telephone = telephone;
 		this.email = email;
+           
              
 	}
         public Client(String username, String password){
@@ -29,6 +31,7 @@ public class Client {
                   this.password = password;
 		this.telephone = telephone;
 		this.email = email;
+                   
                 
 	}
 
@@ -54,14 +57,10 @@ public class Client {
         return true;
     }
 
-
 	public int getId() {
 		return id;
 	}
-        public Boolean getIsAdmin() {
-		return isAdmin;
-	}
-
+   
 	public void setId(int id) {
 		this.id = id;
 	}

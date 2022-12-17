@@ -5,6 +5,8 @@
  */
 package entities;
 
+import java.util.List;
+
 /**
  *
  * @author chaou
@@ -18,7 +20,6 @@ public class Categories {
         this.nom = nom;
     }
     public Categories(String nom){
-
         this.nom = nom;
     }
     public int getId() {
@@ -34,5 +35,8 @@ public class Categories {
     public void setNom(String nom) {
 	this.nom = nom;
     }
+    
+    
+
         
 }

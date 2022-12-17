@@ -10,9 +10,11 @@ public class Produit {
         private Double tauxTva;
         private Categories category ;
         private Rangement rayon;
+       private int quantite;
+        
 	
 
-	public Produit(String desigation, Double prix_achat,byte[] image,Double tauxTva,Categories category,Rangement rayon) {
+	public Produit(String desigation, Double prix_achat,byte[] image,Double tauxTva,Categories category,Rangement rayon,int quantite) {
                 
 		this.desigation = desigation;
 		this.prix_achat = prix_achat;
@@ -20,8 +22,9 @@ public class Produit {
                 this.tauxTva=tauxTva;
                 this.category=category;
                 this.rayon=rayon; 
+                 this.quantite=quantite;
 	}
-        public Produit(int id,String desigation, Double prix_achat,byte[] image,Double tauxTva,Categories category,Rangement rayon) {
+        public Produit(int id,String desigation, Double prix_achat,byte[] image,Double tauxTva,Categories category,Rangement rayon,int quantite) {
 		this.id = id;
 		this.desigation = desigation;
 		this.prix_achat = prix_achat;
@@ -29,7 +32,15 @@ public class Produit {
                 this.tauxTva=tauxTva;
                 this.category=category;
                 this.rayon=rayon; 
+                 this.quantite=quantite;
 	}
+
+            public  int getQte(){
+            return quantite;
+    }
+        public  void setQte(int quantite){
+        this.quantite = quantite;    
+    }
         public Double getTauxTva() {
 		return tauxTva;
 	}
@@ -82,5 +93,18 @@ public class Produit {
 	public void setPrix_achat(Double prix_achat) {
 		this.prix_achat = prix_achat;
 	}
+        
+        
+        
+        public void updateProduit(Produit produit){
+            this.category = produit.category;
+            this.desigation = produit.desigation;
+            this.image = produit.image;
+            this.quantite = produit.quantite;
+            this.rayon = produit.rayon;
+            this.tauxTva = produit.tauxTva;
+            this.prix_achat = produit.prix_achat;
+            
+        }
         
 }

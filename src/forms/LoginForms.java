@@ -20,18 +20,18 @@ private ClientServices c;
 private AuthService a;
 private ProductsRepository productRepo;
 private AuthentificationRepository auth;
+
     public LoginForms() {
         initComponents();
-        this.setTitle(" Login ");
-        
-        this.setExtendedState(MAXIMIZED_BOTH);
+        this.setTitle(" Login ");       
          c = new ClientServices();
          a = new AuthService();
          productRepo = new ProductsRepository();
          auth = new AuthentificationRepository ();
-                 
-        
+    
     }
+
+   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -52,7 +52,8 @@ private AuthentificationRepository auth;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
-        getContentPane().setLayout(null);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -164,12 +165,10 @@ private AuthentificationRepository auth;
                 .addGap(16, 16, 16))
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(750, 190, 370, 410);
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 200, 370, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/forms/log.png"))); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 1190, 800);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 800));
 
         pack();
         setLocationRelativeTo(null);
@@ -179,15 +178,28 @@ private AuthentificationRepository auth;
         
         String login = txtUserName.getText().toString();
         String pswrd =jPasswordField1.getPassword().toString();
-      
+      /*
        if( auth.seAuthentifier(login, pswrd)){
            Dashborad  da = new Dashborad();
            da.setVisible(true);
            this.setVisible(false);
        }
-        
+        if(login.isEmpty() || pswrd.isEmpty()){
+             JOptionPane.showMessageDialog(this, "Remplir les champs vide !! ");
+        }else{
+            if(login.equals("admin")|| pswrd.equals("admin")){
+                Dashborad  da = new Dashborad();
+                da.setVisible(true);
+                this.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(this, "Login ou password inccorect !! ");
+            }
+        }
+        */
       
-  
+  Dashborad  da = new Dashborad();
+                da.setVisible(true);
+                this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -211,7 +223,7 @@ private AuthentificationRepository auth;
     public static void main(String args[]) {
      
        
-        IntelliJTheme.setup(LoginForms.class.getResourceAsStream("/template.theme.json"));
+       IntelliJTheme.setup(LoginForms.class.getResourceAsStream("/template.theme.json"));
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginForms().setVisible(true);

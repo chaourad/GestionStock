@@ -53,7 +53,7 @@ public class FournisseurService implements IDao<Fournisseur> {
     @Override
     public boolean update(Fournisseur o) {
     try {
-        String req = "update fournisseur set nomFournisseur = ? ,  telephone = ?, email = ?where id = ?";
+        String req = "update fournisseur set nom = ? ,  telephone = ?, email = ?where id = ?";
             PreparedStatement ps = Connexion.getConnection().prepareStatement(req);
             ps.setString(1, o.getNom());
            ps.setString(2, o.getTelephone());
@@ -75,7 +75,7 @@ public class FournisseurService implements IDao<Fournisseur> {
 			Statement st = Connexion.getConnection().createStatement();
 			ResultSet rs  = st.executeQuery(sql);
 			if(rs.next())
-				return new Fournisseur(rs.getInt("id"), rs.getString("nomFournisseur"), rs.getString("telephone"), rs.getString("email"));
+				return new Fournisseur(rs.getInt("id"), rs.getString("nom"), rs.getString("telephone"), rs.getString("email"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -90,11 +90,42 @@ public class FournisseurService implements IDao<Fournisseur> {
 			ResultSet rs  = st.executeQuery(sql);
 			while(rs.next())
                           
-				cl.add(new  Fournisseur(rs.getInt("id"), rs.getString("nomFournisseur"), rs.getString("telephone"), rs.getString("email")));
+				cl.add(new  Fournisseur(rs.getInt("id"), rs.getString("nom"), rs.getString("telephone"), rs.getString("email")));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return cl;    
     }
+    
+    public List<Fournisseur> findAllByName(){
+        List<Fournisseur> f1 = new ArrayList<Fournisseur>();
+        try{
+            String sql = "select nom from fournisseur";
+            Statement st = Connexion.getConnection().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next())
+                f1.add(new  Fournisseur( rs.getString("nom")));
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+                
+        return f1;
+    }
+    
+    
+     public int getfounissIdByName(String fournName,List<Fournisseur> fournisseurs){
+        
+        for(Fournisseur four : fournisseurs){
+            if(fournName.toLowerCase().equals(four.getNom().toLowerCase())){
+               return four.getId();
+            }
+        }
+        return -1;
+    }
+
+    public Fournisseur getfounissIdByName(String toString) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 
 }

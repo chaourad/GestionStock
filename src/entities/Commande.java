@@ -2,21 +2,43 @@
 package entities;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class Commande {
         private int code;
 	private Date date;
 	private Client client;
+    
+         private String tblPrd;
 
-	public Commande(int code, Date date, Client client) {
+	public Commande(int code, Date date, Client client,String tblPrd) {
 		super();
 		this.code = code;
 		this.date = date;
 		this.client = client;
+                this.tblPrd = tblPrd;
+          
+
+	}
+        public Commande( Date date, Client client,String tblPrd) {
+		
+		this.date = date;
+		this.client = client;
+                this.tblPrd = tblPrd;
+          
+
+	}
+        public String gettblPrd() {
+		return tblPrd;
 	}
 
+	public void settblPrd(String tblPrd) {
+		this.tblPrd = tblPrd;
+	}
+        
 	public int getCode() {
 		return code;
 	}
@@ -40,6 +62,7 @@ public class Commande {
 	public void setClient(Client client) {
 		this.client = client;
 	}
+    
 
 	@Override
 	public String toString() {

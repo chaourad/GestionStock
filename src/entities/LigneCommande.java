@@ -5,6 +5,9 @@
  */
 package entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author chaou
@@ -14,6 +17,8 @@ public class LigneCommande {
 	private double prixVente;
 	private Commande commande;
 	private Produit produit;
+        List<Produit> produits;
+       
 
 	public LigneCommande(int quantite, double prixVente, Commande commande, Produit produit) {
 		super();
@@ -21,6 +26,7 @@ public class LigneCommande {
 		this.prixVente = prixVente;
 		this.commande = commande;
 		this.produit = produit;
+                produits = new ArrayList<Produit>();
 	}
 
 	public int getQuantite() {
