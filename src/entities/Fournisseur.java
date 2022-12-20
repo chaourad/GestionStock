@@ -60,6 +60,6 @@ public class Fournisseur {
 		@Override
 	    public String toString() {
 	    
-	        return " nom du fournisseur : "+ nom;
+	        return  nom;
 	    }
 }

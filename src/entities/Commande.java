@@ -13,7 +13,7 @@ public class Commande {
 	private Client client;
     
          private String tblPrd;
-
+ private ArrayList<LigneCommande> ligneCommandes;
 	public Commande(int code, Date date, Client client,String tblPrd) {
 		super();
 		this.code = code;
@@ -21,6 +21,28 @@ public class Commande {
 		this.client = client;
                 this.tblPrd = tblPrd;
           
+
+	}
+        public Commande(int code, Date date, Client client) {
+		super();
+		this.code = code;
+		this.date = date;
+		this.client = client;
+         
+
+	}
+        public Commande(int code) {
+		super();
+		this.code = code;
+		
+         
+
+	}
+           public Commande( Date date, Client client) {
+	
+		this.date = date;
+		this.client = client;
+         
 
 	}
         public Commande( Date date, Client client,String tblPrd) {

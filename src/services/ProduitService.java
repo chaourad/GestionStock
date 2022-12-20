@@ -23,10 +23,12 @@ import java.util.List;
  * @author chaou
  */
 public class ProduitService implements IDao<Produit> {
-     private CategoriesServices ss;
+     private CategoriesServices ctgr;
+   
 
     public ProduitService() {
-        ss = new CategoriesServices();
+        ctgr = new CategoriesServices();
+     
     }
 
  /*
@@ -72,14 +74,16 @@ public class ProduitService implements IDao<Produit> {
 
 	@Override
 	public boolean update(Produit o) {	
-	 try {
-            String req = "update produit set designation = ? , prixAchat = ?, image = ?, tauxTVA = ?, id_categ = ? where id = ?";
+	 /*try {
+            String req = "UPDATE produit SET desigatio = ? , prix_achat = ?,  tauxTva = ? , category = ? , rayon = ?  WHEREid = ?";
             PreparedStatement ps = Connexion.getConnection().prepareStatement(req);
          ps.setString(1, o.getDesigation());
             ps.setDouble(2, o.getPrix_achat());
-             ps.setBytes(3, o.getImage());
-             ps.setDouble(4, o.getTauxTva());
-            ps.setInt(5, o.getCategory().getId());
+             ps.setDouble(3, o.getTauxTva());
+    //     ps.setInt(5, cg.getCategoryIdByName(cmbCategory.getSelectedItem().toString(), cg.findAll()));
+            ps.setInt(4, o.getCategory().getId());
+              ps.setInt(5, o.getRangement().getId() );
+          
             ps.setInt(6, o.getId());
             if (ps.executeUpdate() == 1) {
                 return true;
@@ -88,7 +92,7 @@ public class ProduitService implements IDao<Produit> {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/
         return false;
 	}
 
@@ -102,7 +106,7 @@ public class ProduitService implements IDao<Produit> {
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
               
-        //     return new Produit(rs.getInt("id"), rs.getString("designation"),  rs.getDouble("prixAchat"),rs.getString("image"), rs.getDouble("tauxTVA"), ss.findById(rs.getInt("id_categ")),);
+             return new Produit(rs.getInt("id"), rs.getString("desigation"),  rs.getDouble("prix_achat"),rs.getBytes("image"),  ctgr.findById(rs.getInt("category")),rs.getInt("quantite"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -119,7 +123,7 @@ public class ProduitService implements IDao<Produit> {
             Statement st = Connexion.getConnection().createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                //prd.add(new Produit(rs.getInt("id"), rs.getString("designation"),  rs.getDouble("prixAchat"),rs.getString("image"), rs.getDouble("tauxTVA"), ss.findById(rs.getInt("id_categ"))));
+               prd.add(new Produit(rs.getInt("id"), rs.getString("desigation"),  rs.getDouble("prix_achat"),rs.getBytes("image"),ctgr.findById(rs.getInt("category")),rs.getInt("quantite")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -127,6 +131,52 @@ public class ProduitService implements IDao<Produit> {
         return prd;
 	}
 
+      
+	public List<Produit> findAllByDesi()  {
+		  List<Produit> prd = new ArrayList<Produit>();
+        try {
+            String sql = "select desigation from produit";
+            Statement st = Connexion.getConnection().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+               prd.add(new Produit(rs.getString("desigation")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return prd;
+	}
+        
+        
+        
+        public boolean updateProduitQte(int produitId,int nouveauQte){
+          try {
+        String req = "update produit set quantite = ? where id = ?";
+            PreparedStatement ps = Connexion.getConnection().prepareStatement(req);
+                ps.setInt(1, nouveauQte);
+                ps.setInt(2, produitId);
+    if (ps.executeUpdate() == 1) {
+                return true;
+            }
+    }catch(SQLException ex){
+        ex.printStackTrace();
+    }
+        return false;   
+        }
+        
+         public int getProduitNumber (){
+           
+           int c=0;
+           
+               	List<Produit> cl = findAll();
+                
+             for(Produit prd : cl){
+                 c++;
+             }
+      
+                return c;
+             
+       }
 
   
 }

@@ -100,5 +100,55 @@ public class ClientServices implements IDao<Client>{
 		}
 		return cl;
     }
+       public List<Client> findAllName() {
+       	List<Client> cl = new ArrayList<Client>();
+		try {
+			String sql = "select username from client";
+			Statement st = Connexion.getConnection().createStatement();
+			ResultSet rs  = st.executeQuery(sql);
+			while(rs.next())
+                          
+				cl.add(new Client ( rs.getString("username")));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cl;
+    }
+         public int getClientssIdByName(String clientName,List<Client> c){
+        
+        for(Client four : c){
+            if(clientName.toLowerCase().equals(four.getUsername().toLowerCase())){
+               return four.getId();
+            }
+        }
+        return -1;
+    }
+     
+       public int getclientIdBy(String fournName){
+        
+        for(Client four : this.findAll()){
+            if(fournName.toLowerCase().equals(four.getUsername().toLowerCase())){
+               return four.getId();
+            }
+        }
+        return -1;
+    }
+       
+       
+       
+       public int getCLinetNumber (){
+           
+           int c=0;
+           
+               	List<Client> cl = findAll();
+                
+             for(Client client : cl){
+                 c++;
+             }
+      
+                return c;
+             
+       }
+
     
 }

@@ -121,5 +121,13 @@ public class CategoriesServices  implements IDao<Categories> {
         }
         return -1;
     }
-    
+      public int getCategoryIdBy(String categoryName){
+        
+        for(Categories cate : this.findAll()){
+            if(categoryName.toLowerCase().equals(cate.getNom().toLowerCase())){
+               return cate.getId();
+            }
+        }
+        return -1;
+    }
 }

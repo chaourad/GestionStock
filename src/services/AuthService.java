@@ -71,7 +71,7 @@ public class AuthService {
                             if(rs == null){
                                 return null;
                             }else{
-                                return new Client (rs.getString("username"),rs.getString("password"));
+                            //    return new Client (rs.getString("username"),rs.getString("password"));
                             }
 			
 		} catch (SQLException e) {

@@ -1,6 +1,7 @@
 
 package entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +27,12 @@ public class Demmande {
 		this.fournisseur = fournisseur;
                 
 	}
+              public Demmande(int code) {
+		super();
+		this.code = code;
+	
+          
+	}  
 
 	public int getCode() {
 		return code;
@@ -43,7 +50,7 @@ public class Demmande {
 	}
  
  
-	public Date getDateAchat() {
+	public Date getDate() {
 		return date;
 	}
 
@@ -60,9 +67,11 @@ public class Demmande {
 		this.fournisseur = fournisseur;
 	}
 
-	@Override
+	
+        	@Override
 	public String toString() {
-		return "Demmande [code=" + code + ", date=" + date + "]";
-	}
+	
+		return " " + code ;
+	}  
 
 }

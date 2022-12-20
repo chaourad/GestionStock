@@ -13,20 +13,22 @@ import java.util.List;
  * @author chaou
  */
 public class LigneCommande {
-    private int quantite;
+        private Commande commande;
+	private Produit produit;    
+        private int quantite;
 	private double prixVente;
-	private Commande commande;
-	private Produit produit;
-        List<Produit> produits;
+	
+        //List<Produit> produits;
        
 
-	public LigneCommande(int quantite, double prixVente, Commande commande, Produit produit) {
+	public LigneCommande( Commande commande, Produit produit,int quantite, double prixVente) {
 		super();
+                this.commande = commande;
+		this.produit = produit;
 		this.quantite = quantite;
 		this.prixVente = prixVente;
-		this.commande = commande;
-		this.produit = produit;
-                produits = new ArrayList<Produit>();
+		
+             //   produits = new ArrayList<Produit>();
 	}
 
 	public int getQuantite() {
@@ -44,7 +46,10 @@ public class LigneCommande {
 	public void setPrixVente(double prixVente) {
 		this.prixVente = prixVente;
 	}
-
+ public Double getMontant(){
+            Double montant = prixVente*quantite;
+            return montant; 
+        }
 	public Commande getCommande() {
 		return commande;
 	}
@@ -63,7 +68,7 @@ public class LigneCommande {
 
 	@Override
 	public String toString() {
-		return "LigneCommande [quantite=" + quantite + ", prixVente=" + prixVente + ", commande=" + commande
-				+ ", produit=" + produit + "]";
+		return  " " + commande;
+				
 	}
 }

@@ -8,8 +8,13 @@ package services;
 import connexion.Connexion;
 import dao.IDao;
 import entities.Commande;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
 import java.util.List;
 
 /**
@@ -17,43 +22,166 @@ import java.util.List;
  * @author chaou
  */
 public class CommandeService implements IDao<Commande>{
-private ClientServices cc;
-  public CommandeService() {
-        cc = new ClientServices();
+
+        private List<Commande> commandes;
+         private ClientServices ss;
+
+    public CommandeService() {
+        ss = new ClientServices();
     }
 
-    @Override
-    public boolean create(Commande o) {
-	try {
-            String sql = "INSERT INTO commande values (null, '" + o.getCode() + "', '" + o.getDate()+"','"+o.getClient()+ "')";
-             Statement st = Connexion.getConnection().createStatement();
-            if (st.executeUpdate(sql) == 1) {
+
+
+	@Override
+	public boolean create(Commande o) {
+        
+		  
+        try {
+          String req = "insert into commande values ( ?, ? , ? )";
+            PreparedStatement ps = Connexion.getConnection().prepareStatement(req);
+              
+            ps.setInt(1, o.getCode());
+          ps.setDate(2, new Date(o.getDate().getTime()));
+          
+            ps.setInt(3, o.getClient().getId());
+          
+       
+            if (ps.executeUpdate() == 1) {
                 return true;
             }
-		} catch (SQLException e) {
-			  e.printStackTrace();
 
-		}
-		return false;    }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        /*  String sql = "INSERT INTO commande values (null, '" + o.getDate() + "', '" + o.getClient().getId()+  "')";
+	Statement st = Connexion.getConnection().createStatement();
+	if (st.executeUpdate(sql) == 1)
+            return true;
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}*/
+	return false;   
+		
+        
 
-    @Override
-    public boolean delete(Commande o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	}
 
-    @Override
-    public boolean update(Commande o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public boolean delete(Commande o) {
+		  try {
+            String req = "delete from commande where code  = ?";
+            PreparedStatement ps = Connexion.getConnection().prepareStatement(req);
+            ps.setInt(1, o.getCode());
+            if (ps.executeUpdate() == 1) {
+                return true;
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+	}
 
-    @Override
-    public Commande findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public boolean update(Commande o) {
+		 try {
+           /* String req = "update commande set  date  = ?, client = ? where code = ?";
+            PreparedStatement st = Connexion.getConnection().prepareStatement(req);     
+            
+            st.setDate(1, new Date(o.getDate().getTime())); 
+            st.setInt(2, o.getClient().getId());
+            st.setInt(3, o.getCode());
+           if (st.executeUpdate() == 1) {
+                return true;
+            }*/
+            String req = "update commande set date = ? ,  client = ? where code = ?";
+            PreparedStatement ps = Connexion.getConnection().prepareStatement(req);
+          
+            ps.setDate(1, new Date(o.getDate().getTime()));
+            ps.setInt(2, o.getClient().getId());
+            ps.setInt(3, o.getCode());
+            if (ps.executeUpdate() == 1) {
+                return true;
+            }
 
-    @Override
-    public List<Commande> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return false;
+	}
+
+	@Override
+	public Commande findById(int code) {
+		Commande  commande = null;
+        try {
+            String sql = "select * from commande where code = " + code;
+            Statement st = Connexion.getConnection().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                return new Commande(rs.getInt("code"), rs.getDate("date"),ss.findById(rs.getInt("client")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+	}
+
+        
+        
+        
+        
+        
+        
+	@Override
+	public List<Commande> findAll() {
+		
+            	 List<Commande> Commandes = new ArrayList<Commande>();
+        try {
+            String sql = "select * from commande";
+            Statement st = Connexion.getConnection().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                Commandes.add(new Commande(rs.getInt("code"), rs.getDate("date"),ss.findById(rs.getInt("client"))));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Commandes;
+	}
+        
+           public List<Commande> findAllByCode() {
+   List<Commande> frnss = new ArrayList<Commande>();
+        try {
+            String sql = "select code from commande";
+            Statement st = Connexion.getConnection().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                frnss.add(new Commande(rs.getInt("code")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return frnss;       }
+           
+           
+      
+           public int getCommandeNumber (){
+           
+           int c=0;
+           
+               	List<Commande> cl = findAll();
+                
+             for(Commande cmnd : cl){
+                 c++;
+             }
+   
+                return c;
+           
+          
+       }
+
+         
     
 }

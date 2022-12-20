@@ -35,6 +35,11 @@ public class Categories {
     public void setNom(String nom) {
 	this.nom = nom;
     }
+
+    @Override
+    public String toString() {
+        return nom; //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 

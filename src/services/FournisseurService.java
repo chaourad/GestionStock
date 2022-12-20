@@ -122,10 +122,17 @@ public class FournisseurService implements IDao<Fournisseur> {
         }
         return -1;
     }
-
-    public Fournisseur getfounissIdByName(String toString) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     
+       public int getFounrnisseurIdBy(String fournName){
+        
+        for(Fournisseur four : this.findAll()){
+            if(fournName.toLowerCase().equals(four.getNom().toLowerCase())){
+               return four.getId();
+            }
+        }
+        return -1;
     }
+
     
 
 }

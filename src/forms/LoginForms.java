@@ -197,7 +197,7 @@ private AuthentificationRepository auth;
         }
         */
       
-  Dashborad  da = new Dashborad();
+                Dashborad  da = new Dashborad();
                 da.setVisible(true);
                 this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -223,7 +223,7 @@ private AuthentificationRepository auth;
     public static void main(String args[]) {
      
        
-       IntelliJTheme.setup(LoginForms.class.getResourceAsStream("/template.theme.json"));
+         IntelliJTheme.setup(LoginForms.class.getResourceAsStream("/template.theme.json"));
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginForms().setVisible(true);

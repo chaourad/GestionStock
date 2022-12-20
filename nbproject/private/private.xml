@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/chaou/Documents/NetBeansProjects/GestionStock/src/entities/Rangement.java</file>
-            <file>file:/C:/Users/chaou/Documents/NetBeansProjects/GestionStock/src/entities/Categories.java</file>
+            <file>file:/C:/Users/chaou/Documents/NetBeansProjects/GestionStock/src/forms/DemmandeForms.java</file>
+            <file>file:/C:/Users/chaou/Documents/NetBeansProjects/GestionStock/src/forms/ProduitForm.java</file>
+            <file>file:/C:/Users/chaou/Documents/NetBeansProjects/GestionStock/src/entities/Demmande.java</file>
             <file>file:/C:/Users/chaou/Documents/NetBeansProjects/GestionStock/src/services/CommandeService.java</file>
-            <file>file:/C:/Users/chaou/Documents/NetBeansProjects/GestionStock/src/services/ClientServices.java</file>
-            <file>file:/C:/Users/chaou/Documents/NetBeansProjects/GestionStock/src/services/RangementService.java</file>
-            <file>file:/C:/Users/chaou/Documents/NetBeansProjects/GestionStock/src/services/CategoriesServices.java</file>
-            <file>file:/C:/Users/chaou/Documents/NetBeansProjects/GestionStock/src/forms/produitForm.java</file>
+            <file>file:/C:/Users/chaou/Documents/NetBeansProjects/GestionStock/src/forms/CommandeForms.java</file>
         </group>
     </open-files>
 </project-private>

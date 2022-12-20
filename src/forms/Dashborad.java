@@ -2,18 +2,25 @@
 package forms;
 
 import dao.EventMenuSelected;
+import entities.Model_Card;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
 
 
 public class Dashborad extends javax.swing.JFrame {
 
+    
   
     public Dashborad() {
         initComponents();
+        
         menus1.initMoving(Dashborad.this);
+              setForms(new dasFrms());
+       
         menus1.addEventMenuSelected(new EventMenuSelected() {
+ 
 
             @Override
             public void selected(int index) {
@@ -27,26 +34,24 @@ public class Dashborad extends javax.swing.JFrame {
                 }else if(index == 4){
                      setForms(new  DemmandeForms());
                 }else if(index == 6){
-                    setForms(new   LigneDemmandeForms());
+                setForms(new  CategoryForms());
                    
                 }else if(index == 8){
-                    //sortie
-                     setForms(new  CategoriesForm());
+                   setForms(new ProduitForm());
+                   
                     
                 }else if(index == 10){
-                    setForms(new produitForm());
+                      setForms(new ClientForms());
                     
                 }else if( index == 12){
-                  setForms(new ClientForms());
+                   setForms(new  CommandeForms());
+
                 }else if( index == 14){
-                      setForms(new  CommandeForms());
-                }else if( index == 16){
-                     setForms(new   LigneCommandeForms());
-                }else if(index == 18){
-                    setForms(new ProductAllForms());
-                    
+                     setForms(new ProductAllForms());
                 }else if(index == 25){
-                   
+                    LoginForms l   = new LoginForms();
+                    l.setVisible(true);
+                   dispose();
                     
                 }else{
                     
@@ -75,6 +80,7 @@ public class Dashborad extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(153, 153, 0));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -82,16 +88,18 @@ public class Dashborad extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(menus1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 5, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(menus1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(menus1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -107,6 +115,7 @@ public class Dashborad extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Dashborad().setVisible(true);
+                
             }
         });
     }

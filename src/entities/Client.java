@@ -20,9 +20,9 @@ public class Client {
            
              
 	}
-        public Client(String username, String password){
+        public Client(String username){
             this.username = username;
-                this.password = password;
+          
         }
         
         public Client(int id, String username, String password,  String telephone, String email) {
@@ -98,6 +98,6 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client : " + this.username;
+		return username;
 	}
 }

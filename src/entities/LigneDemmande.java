@@ -9,17 +9,17 @@ public class LigneDemmande {
 	private double prix;
 	private Demmande demande;
 	private Produit produit;
-        List<Produit> produits;
+        //List<Produit> produits;
         
         
 
-	public LigneDemmande(int quantite, double prix, Demmande demande, Produit produit) {
-		super();
+	public LigneDemmande( Demmande demande, Produit produit,int quantite, double prix) {
+                this.demande = demande;
+		this.produit = produit;
 		this.quantite = quantite;
 		this.prix = prix;
-		this.demande = demande;
-		this.produit = produit;
-                produits = new ArrayList<Produit>();
+		
+                //produits = new ArrayList<Produit>();
 	}
         
         
@@ -32,7 +32,10 @@ public class LigneDemmande {
         }
         
         
-        
+        public Double getMontant(){
+            Double montant = prix*quantite;
+            return montant; 
+        }
        
 
 	public int getQuantite() {
