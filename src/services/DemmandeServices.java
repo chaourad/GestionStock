@@ -126,5 +126,22 @@ public class DemmandeServices implements IDao<Demmande> {
       
       
          
+    public List<Demmande> findBetweenDate(java.util.Date d1, java.util.Date d2) {
+        List<Demmande> demandes = new ArrayList<Demmande>();
+        try {
+            String sql = "select * from demmande where date between ? and ?";
+            PreparedStatement st = Connexion.getConnection().prepareStatement(sql);
+            st.setDate(1, new Date(d1.getTime()));
+            st.setDate(2, new Date(d2.getTime()));
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                demandes.add(new Demmande(rs.getInt("code"), rs.getDate("date"), frn.findById(rs.getInt("fournisseur"))));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return demandes;
+    }
+
     
 }

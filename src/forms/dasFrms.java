@@ -4,11 +4,35 @@
  * and open the template in the editor.
  */
 package forms;
+
+import entities.ChartEntity;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Paint;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import javax.swing.JPanel;
+import java.awt.Color;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.Dataset;
+
+
 import entities.Model_Card;
 import entities.Produit;
+import java.awt.BorderLayout;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
 import services.ClientServices;
 import services.CommandeService;
 import services.ProduitService;
@@ -23,7 +47,7 @@ public class dasFrms extends javax.swing.JPanel {
     private CommandeService comn;
     private ProduitService produitService;
     private static int id;
-
+DefaultCategoryDataset barchart;
     
     
     public dasFrms() {
@@ -35,23 +59,15 @@ public class dasFrms extends javax.swing.JPanel {
         cardprix.setData(new Model_Card(new ImageIcon(getClass().getResource("/icons/traits.png")),"Produit",Integer.toString(produitService.getProduitNumber())));
         cardClient.setData(new Model_Card(new ImageIcon(getClass().getResource("/icons/client.png")),"Client " ,Integer.toString(cc.getCLinetNumber())));
         cardCommande.setData(new Model_Card(new ImageIcon(getClass().getResource("/icons/cmnd.png")),"Commande",Integer.toString(comn.getCommandeNumber())));          
-        loadInsStock();
-                 
-                 
-                
-                
-                
-                
-           
+       loadInsStock();                 
+          barchart = new DefaultCategoryDataset();
+ showPi();
     }
-    
-    
+       
+
     public  void loadInsStock(){
         model.setRowCount(0);
-       
-        
-             
-                
+
             List<Produit> produits = this.produitService.findAll();
                 for(Produit produit : produits){
                     if(produit.getQte()<=5){
@@ -67,7 +83,30 @@ public class dasFrms extends javax.swing.JPanel {
                     }
                 }
     }
+  public void showPi(){
+        //create chart
+             DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
+             //creatation data
+            CommandeService cmd = new CommandeService();
+           for(ChartEntity charte : cmd.getOrdersByDate()){
+             dataset.setValue(charte.getVente(), "", charte.getDate());
+    
+       }
+        JFreeChart chart = ChartFactory.createBarChart("Date", "", "Commande", dataset, PlotOrientation.VERTICAL, false,true,false);
+
+           
+         CategoryPlot p = chart.getCategoryPlot();
+       p.setRangeGridlinePaint(Color.GREEN);
+       ChartFrame fram1 = new ChartFrame("Count", chart);
+        chart.getTitle().setPaint(Color.blue);
+  
+       fram1.setVisible(true);
+       fram1.setSize(500, 500);
+       
+ 
+         
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,9 +124,7 @@ public class dasFrms extends javax.swing.JPanel {
         cardCommande = new component.cardFoms();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        panelChart = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -135,38 +172,17 @@ public class dasFrms extends javax.swing.JPanel {
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(153, 255, 102));
+        panelChart.setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabel2.setText("Les produit plus vendus");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(jLabel2)
-                .addContainerGap(929, Short.MAX_VALUE))
+        javax.swing.GroupLayout panelChartLayout = new javax.swing.GroupLayout(panelChart);
+        panelChart.setLayout(panelChartLayout);
+        panelChartLayout.setHorizontalGroup(
+            panelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 593, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel2)
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 379, Short.MAX_VALUE))
+        panelChartLayout.setVerticalGroup(
+            panelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 480, Short.MAX_VALUE)
         );
 
         jPanel6.setBackground(new java.awt.Color(204, 204, 204));
@@ -229,7 +245,7 @@ public class dasFrms extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -245,7 +261,7 @@ public class dasFrms extends javax.swing.JPanel {
                 .addGap(43, 43, 43)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -261,16 +277,14 @@ public class dasFrms extends javax.swing.JPanel {
     private component.cardFoms cardCommande;
     private component.cardFoms cardprix;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JPanel panelChart;
     private javax.swing.JTable tableStc;
     // End of variables declaration//GEN-END:variables
 
